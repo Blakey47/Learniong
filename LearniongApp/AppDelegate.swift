@@ -7,6 +7,7 @@
 //
 
 import UIKit
+import AirshipKit
 
 @UIApplicationMain
 class AppDelegate: UIResponder, UIApplicationDelegate {
@@ -16,6 +17,23 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
 
     func application(_ application: UIApplication, didFinishLaunchingWithOptions launchOptions: [UIApplication.LaunchOptionsKey: Any]?) -> Bool {
         // Override point for customization after application launch.
+        let config = UAConfig.default()
+        
+        UAirship.takeOff(config)
+        
+        UAirship.push().userPushNotificationsEnabled = true
+        UAirship.push().defaultPresentationOptions = [.alert, .badge, .sound]
+        
+        let channelID = UAirship.push()?.channelID
+        print("This is the Channel ID: \(channelID ?? "")")
+        
+        UAirship.push()?.isChannelTagRegistrationEnabled = false
+        
+        UAirship.push()?.addTag("Test")
+        UAirship.push()?.addTags(["One", "Two", "Three"], group: "Number")
+        UAirship.namedUser()?.identifier = "Darragh"
+        UAirship.push()?.updateRegistration()
+        
         return true
     }
 

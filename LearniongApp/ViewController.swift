@@ -9,12 +9,13 @@
 import UIKit
 
 class ViewController: UIViewController {
-
+    
+//    Going to work on displaying the information within the view
+//    let appDelegate = UIApplication.shared.delegate as! AppDelegate
+    
     override func viewDidLoad() {
         super.viewDidLoad()
-        // Do any additional setup after loading the view, typically from a nib.
+        
     }
-
-
+    
 }
-
